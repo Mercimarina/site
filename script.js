@@ -18,7 +18,7 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Frises de logos (continues, quelle que soit la largeur d’écran) */
 (()=>{
- const LG=[["images/logo-client-01.svg",106,23],["images/logo-client-02.svg",112,25],["images/logo-client-03.svg",124,19],["images/logo-client-04.svg",84,29],["images/logo-client-05.svg",88,27],["images/logo-client-06.svg",75,36],["images/logo-client-07.svg",95,24],["images/logo-client-08.svg",128,24]];
+ const LG=[["logo-client-01.svg",106,23],["logo-client-02.svg",112,25],["logo-client-03.svg",124,19],["logo-client-04.svg",84,29],["logo-client-05.svg",88,27],["logo-client-06.svg",75,36],["logo-client-07.svg",95,24],["logo-client-08.svg",128,24]];
  const gap=52,setW=LG.reduce((a,l)=>a+l[1]+gap,0),K=Math.ceil(Math.max(innerWidth,screen.width||0,1920)/setW)+1;
  ['rail','rail2'].forEach(id=>{const r=document.getElementById(id);
   for(let c=0;c<2*K;c++)LG.forEach(l=>{const im=new Image();im.alt='';im.src=l[0];im.style.width=l[1]+'px';im.style.height=l[2]+'px';r.appendChild(im)});
@@ -40,7 +40,7 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Carrousel en biais : défilement lissé au scroll */
 (()=>{
- const IM=[["images/carrousel-01.webp","images/carrousel-02.webp","images/carrousel-03.webp","images/carrousel-04.webp","images/carrousel-05.webp"],["images/carrousel-06.webp","images/carrousel-07.webp","images/carrousel-08.webp","images/carrousel-09.webp"],["images/carrousel-10.webp","images/carrousel-11.webp","images/carrousel-12.webp","images/carrousel-13.webp","images/carrousel-14.webp"],["images/carrousel-15.webp","images/carrousel-16.webp","images/carrousel-17.webp","images/carrousel-18.webp","images/carrousel-19.webp"]];
+ const IM=[["carrousel-01.webp","carrousel-02.webp","carrousel-03.webp","carrousel-04.webp","carrousel-05.webp"],["carrousel-06.webp","carrousel-07.webp","carrousel-08.webp","carrousel-09.webp"],["carrousel-10.webp","carrousel-11.webp","carrousel-12.webp","carrousel-13.webp","carrousel-14.webp"],["carrousel-15.webp","carrousel-16.webp","carrousel-17.webp","carrousel-18.webp","carrousel-19.webp"]];
  const reel=$('#reel'),box=reel.parentNode;
  IM.forEach((imgs,r)=>{
   const row=document.createElement('div');row.className='row';row.dataset.d=r%2?1:-1;
