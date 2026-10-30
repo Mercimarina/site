@@ -127,3 +127,9 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Icône flèche des boutons */
 $$('.pill').forEach(b=>b.insertAdjacentHTML('beforeend','<i class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></i>'));
+
+(()=>{const a=document.querySelector('.wt');if(!a)return;a.addEventListener('click',e=>{
+ if(e.ctrlKey||e.metaKey||e.shiftKey||window.innerWidth<700)return;
+ const w=520,h=760,l=Math.max(0,(screen.width-w)/2),t=Math.max(0,(screen.height-h)/2);
+ const p=window.open(a.href,'wetransfer','popup=yes,width='+w+',height='+h+',left='+l+',top='+t+'');
+ if(p){p.opener=null;e.preventDefault()}})})();
