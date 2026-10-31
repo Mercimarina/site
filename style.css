@@ -213,6 +213,12 @@ nav a.on{background:var(--mist);color:var(--ink);font-weight:700}
 .portrait img{display:block;width:100%;height:100%;object-fit:cover}
 .about .kicker,.about .title{text-align:left}
 .about p.kicker{max-width:none;margin-top:0}
+.about p.kicker{font-size:15px;line-height:inherit;color:var(--muted);margin-bottom:16px}
+.soc[hidden]{display:none}
+.cmail{text-align:center;margin-top:14px;font-size:17px;color:rgba(255,255,255,.78)}
+.cmail a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.cmail a:hover{color:#8fc3fb}
+@media(max-width:760px){.about p.kicker{font-size:13px}}
 .about .sub{margin-top:14px;font:700 15px var(--f);letter-spacing:.12em;text-transform:uppercase;color:#2a6ad8}
 @media (prefers-color-scheme:dark){.about .sub{color:#6fb1f7}}
 .about p{max-width:52ch;margin-top:16px;font-size:17px;line-height:1.55;color:color-mix(in srgb,var(--ink) 80%,var(--bg))}
