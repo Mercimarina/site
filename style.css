@@ -215,9 +215,11 @@ nav a.on{background:var(--mist);color:var(--ink);font-weight:700}
 .about p.kicker{max-width:none;margin-top:0}
 .about p.kicker{font-size:15px;line-height:inherit;color:var(--muted);margin-bottom:16px}
 .soc[hidden]{display:none}
-.cmail{text-align:center;margin-top:14px;font-size:17px;color:rgba(255,255,255,.78)}
-.cmail a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
-.cmail a:hover{color:#8fc3fb}
+.cmail{text-align:center;margin-top:14px;font-size:20px;color:rgba(255,255,255,.78)}
+.cmail a{color:#6db1f8;font-weight:600;text-decoration:none;transition:color .2s}
+.cmail a:hover{color:#a8d2fc}
+.cmail a:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:3px}
+@media(max-width:760px){.cmail{font-size:17px}}
 @media(max-width:760px){.about p.kicker{font-size:13px}}
 .about .sub{margin-top:14px;font:700 15px var(--f);letter-spacing:.12em;text-transform:uppercase;color:#2a6ad8}
 @media (prefers-color-scheme:dark){.about .sub{color:#6fb1f7}}
