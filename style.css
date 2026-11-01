@@ -345,7 +345,7 @@ footer a{text-decoration:none}
  .item>button{grid-template-columns:62px 1fr 30px;align-items:center;font-size:15px;letter-spacing:0}
  .tt{display:contents}
  .num{grid-row:1;grid-column:1}
- .tt b{grid-row:1;grid-column:2}
+ .tt b{grid-row:1;grid-column:2;font-weight:600}
  .tt small{grid-row:2;grid-column:2;margin-top:5px}
  .plus{grid-row:1;grid-column:3;line-height:1}
  .list{margin-top:28px}
