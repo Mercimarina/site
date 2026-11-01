@@ -177,9 +177,9 @@ nav a.on{background:var(--mist);color:var(--ink);font-weight:700}
 .step .ttl h3{margin-top:0}
 .step:nth-of-type(1) .ttl h3{white-space:nowrap}
 .step:nth-of-type(1) .ill{width:42%;margin-left:-14px;margin-right:16px}
-.step:nth-of-type(2) .ill{width:52%;margin-right:-12px;margin-left:-14px}
+.step:nth-of-type(2) .ill{width:44%;margin:-8px 0 0 -14px}
 .step:nth-of-type(4) .ill{width:48%;margin:-18px 12px 28px -30px}
-.step:nth-of-type(3) .ill{width:38%;margin:-24px 0 22px -24px}
+.step:nth-of-type(3) .ill{width:34%;margin:-22px 2px 12px -24px}
 .step:nth-of-type(3) .ttl h3{white-space:nowrap}
 .step .ttl h3 i{white-space:nowrap}
 .step .ill{flex:none;display:block;width:46%;height:auto;margin:-18px 24px -4px 0;transform:translateY(-26px)}
@@ -188,7 +188,6 @@ nav a.on{background:var(--mist);color:var(--ink);font-weight:700}
 .step h3{margin-top:auto;font:800 34px/1.05 var(--f);letter-spacing:-.03em}
 .step h3 i{display:block;font:italic 500 32px var(--s);letter-spacing:0}
 .step p{margin-top:16px;font-size:16px;line-height:1.5}
-@media(max-width:760px){.step:nth-of-type(2) .ill{transform:translate(-24px,-26px)}.step:nth-of-type(3) .ill{transform:translate(-15px,-26px)}}
 
 @media(min-width:761px) and (max-width:1399px){
  .steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;overflow:visible;width:min(780px,100% - 40px);margin:20px auto 0;padding:56px 0 24px}
