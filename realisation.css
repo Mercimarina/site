@@ -136,3 +136,7 @@
 @media(max-width:700px){.rz-slcap{font-size:22px;margin:14px 0 8px}}
 @media(max-width:560px){.rz-bandt--ba{font-size:26px}}
 .rz-vk-myconnectingia .rz-vgl{background:rgba(70,16,120,.5)}
+
+/* questionnaire : masqué tant qu'on n'a pas cliqué sur « Démarrer » */
+.rz-contact .tf[hidden],.rz-contact .rz-start[hidden]{display:none}
+.rz-contact .tf{margin-top:56px}

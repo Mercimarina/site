@@ -1,10 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════
    realisation.js : script COMMUN à toutes les pages « réalisation »
-   1. menu   2. frise de logos   3. carrousel   4. avant/après   5. « à découvrir aussi »
+   1. menu   2. frise de logos   3. carrousel   4. avant/après   5. « à découvrir aussi »   6. questionnaire de contact
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
   var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   /* ── 1. Menu burger ── */
@@ -162,5 +163,62 @@
     var p = $('.rz-varr--prev'), n = $('.rz-varr--next');
     if (p) p.addEventListener('click', go(-1));
     if (n) n.addEventListener('click', go(1));
+  })();
+
+  /* 6. Questionnaire de contact (même logique que la page d'accueil ; s'ouvre au clic sur « Démarrer ») */
+  (function () {
+    var f = $('#tf'); if (!f) return;
+    var steps = $$('.st', f), bar = $('.bar i', f), cnt = $('.cnt', f), nx = $('.nx', f), pv = $('.back', f),
+        em = $('#em'), err = $('.err', f), i = 0, ready = false;
+    nx.insertAdjacentHTML('beforeend', '<i class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></i>');
+    function show(k, d) {
+      steps[i].classList.remove('on'); i = k; var s = steps[i];
+      s.style.setProperty('--d', d >= 0 ? '30px' : '-30px'); s.classList.add('on');
+      bar.style.width = ((i + 1) / steps.length * 100) + '%'; cnt.textContent = (i + 1) + ' / ' + steps.length;
+      pv.hidden = i === 0;
+      var last = i === steps.length - 1;
+      nx.classList.toggle('icon', !last); $('span', nx).textContent = last ? 'Envoyer' : ''; nx.setAttribute('aria-label', last ? 'Envoyer' : 'Suivant');
+      err.textContent = '';
+      var t = $('input:not([type=checkbox]):not([hidden]):not([name=_gotcha]):not([type=hidden]),textarea', s);
+      if (t && ready) t.focus({ preventScroll: true });
+    }
+    function send() {
+      if (nx.disabled) return; nx.disabled = true; err.textContent = '';
+      var d = new FormData(f), svc = d.getAll('svc').join(', '); d.delete('svc'); d.set('besoin', svc);
+      fetch(f.action, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
+        .then(function (r) { if (r.ok) f.classList.add('done'); else throw 0; })
+        .catch(function () { err.textContent = 'L’envoi a échoué. Réessayez ou écrivez-moi directement par e-mail.'; })
+        .then(function () { nx.disabled = false; });
+    }
+    function next() {
+      if (i === steps.length - 1) {
+        if (!em.value || !em.checkValidity()) { err.textContent = 'Merci d’indiquer une adresse e-mail valide.'; em.focus(); return; }
+        send(); return;
+      }
+      show(i + 1, 1);
+    }
+    nx.addEventListener('click', next);
+    pv.addEventListener('click', function () { show(i - 1, -1); });
+    f.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' || e.target.closest('button')) return;
+      if (e.target.tagName === 'TEXTAREA') { if (e.ctrlKey || e.metaKey) { e.preventDefault(); next(); } return; }
+      e.preventDefault(); next();
+    });
+    f.addEventListener('submit', function (e) { e.preventDefault(); });
+    var o = $('#oth'), ot = $('#othtxt');
+    o.addEventListener('change', function () { ot.hidden = !o.checked; if (o.checked) ot.focus(); });
+    show(0, 1); ready = true;
+
+    /* Ouverture : « Démarrer », « Contact » (en-tête), « Un projet similaire ? », lien du pied de page */
+    var sec = $('#contact'), go = $('.rz-start', sec);
+    function open(scroll) {
+      f.hidden = false; if (go) go.hidden = true;
+      if (scroll) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function () { var c = $('.opt input', f); if (c && matchMedia('(hover:hover)').matches) c.focus({ preventScroll: true }); }, 400);
+    }
+    $$('[data-open-form]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); var nav = $('#nav'); if (nav) nav.classList.remove('open'); open(true); });
+    });
+    if (location.hash === '#contact') open(true);
   })();
 })();

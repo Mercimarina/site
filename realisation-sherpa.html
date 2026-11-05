@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="realisation.css?v=2">
+<link rel="stylesheet" href="realisation.css?v=3">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -27,7 +27,7 @@
 <!-- ═════ EN-TÊTE (identique à la page d'accueil) ═════ -->
 <header class="site solid past"><div class="hbar">
   <a class="brand" href="index.html" aria-label="Accueil"><img src="marina-graphiste-powerpoint-freelance-logo.webp" alt="Marina, graphiste PowerPoint freelance"><span>MerciMarina</span></a>
-  <div class="hright"><a class="pill dark hcta" href="index.html#contact">Contact<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a><button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button></div>
+  <div class="hright"><a class="pill dark hcta" href="#contact" data-open-form>Contact<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a><button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button></div>
   <nav id="nav" aria-label="Navigation principale"><a href="index.html">Page d’accueil</a><a href="index.html#services">Services</a><a href="index.html#realisations">Réalisations</a><a href="index.html#methode">Méthode</a><a href="index.html#temoignages">Avis</a><a href="index.html#apropos">À propos</a></nav>
 </div></header>
 
@@ -57,7 +57,7 @@
         <div class="rz-g16"><img class="rz-gimg" src="demo-06.webp" width="1600" height="900" alt="Slide du support Sherpa" loading="lazy" decoding="async"></div>
       </div>
       <div class="rz-gbg">
-        <img class="rz-gbg-fill rz-gbg-blur" src="demo-02.webp" width="1600" height="900" alt="" loading="lazy" decoding="async">
+        <img class="rz-gbg-fill" src="fond-sommaire.webp" width="1400" height="700" alt="" loading="lazy" decoding="async">
         <img class="rz-gfront" src="demo-02.webp" width="1600" height="900" alt="Slide du support Sherpa" loading="lazy" decoding="async">
       </div>
       <p class="rz-slcap">Hiérarchiser et clarifier<br>un contenu réglementaire <span class="rz-pf">dense</span></p>
@@ -73,7 +73,7 @@
   </section>
 
   <!-- ═════ BANDEAU VIOLET ═════ -->
-  <section class="rz-band" style="--band-bg:url(fond-bandeau.webp);--ba-on:linear-gradient(90deg,#0b3fae,#1a6fe0 55%,#1fb89c);--ba-sh:rgba(20,100,200,.45)">
+  <section class="rz-band" style="--band-bg:url(fond-bandeau.webp)">
 
     <!-- 3. ✎ À PERSONNALISER : carrousel « cohérence visuelle »
          Une rangée = une liste d'images (le script ajoute lui-même les copies pour la boucle infinie). -->
@@ -182,7 +182,7 @@
       </div>
     </div>
 
-    <div class="rz-cta"><a class="pill" href="index.html#contact">Un projet similaire ?<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a></div>
+    <div class="rz-cta"><a class="pill" href="#contact" data-open-form>Un projet similaire ?<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a></div>
   </section>
 
   <!-- ═════ 5. ✎ À PERSONNALISER : à découvrir aussi (remplacer les href par les pages réalisations) ═════ -->
@@ -218,13 +218,27 @@
   </section>
 
   <!-- ═════ INVITATION À CONTACTER (commun : renvoie vers le formulaire de l'accueil) ═════ -->
-  <section class="rz-contact">
+  <section class="rz-contact" id="contact">
     <div class="rz-contact-in">
       <span class="rz-eyebrow">ET VOUS ?</span>
       <h2 class="rz-ch2">Discutons<br class="rz-mbr"> de votre <span class="rz-pf">projet</span></h2>
       <p class="rz-cmail">Cliquez sur Démarrer<br class="rz-mbr"> ou écrivez-moi : <a href="mailto:hello@mercimarina.fr">hello@mercimarina.fr</a></p>
-      <a class="pill rz-start" href="index.html#contact">Démarrer<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a>
+      <a class="pill rz-start" href="#contact" data-open-form>Démarrer<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></span></a>
     </div>
+    <form class="tf" id="tf" hidden action="https://formspree.io/f/mvkkbrel" method="POST" novalidate>
+  <input type="hidden" name="_subject" value="Nouvelle demande depuis mercimarina.fr"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+  <div class="prog"><div class="bar"><i></i></div><span class="cnt">1 / 6</span></div>
+  <div class="st on" role="group" aria-labelledby="q1"><p class="qn" id="q1"><em>1</em>De quelle présentation <br class="m">avez-vous besoin ?</p>
+   <div class="opts"><label class="opt"><input type="checkbox" name="svc" value="Présentation commerciale"><span>Présentation commerciale</span></label><label class="opt"><input type="checkbox" name="svc" value="Pitch deck"><span>Pitch deck</span></label><label class="opt"><input type="checkbox" name="svc" value="Support de formation"><span>Support de formation</span></label><label class="opt"><input type="checkbox" name="svc" value="Conférence / événement"><span>Conférence / événement</span></label><label class="opt"><input type="checkbox" name="svc" value="Appel d’offres"><span>Appel d’offres</span></label><label class="opt"><input type="checkbox" id="oth" name="svc" value="Autre"><span>Autre</span></label></div>
+   <input id="othtxt" name="besoin_autre" type="text" placeholder="Précisez votre besoin…" aria-label="Autre besoin" hidden></div>
+  <div class="st"><label class="qn" for="ctx"><em>2</em>Parlez-moi de votre projet</label><textarea id="ctx" name="projet" placeholder="Contexte de la présentation et informations utiles à me communiquer…"></textarea><a class="wt" href="https://wetransfer.com/?to=hello@mercimarina.fr" target="_blank" rel="noopener noreferrer"><span>Envoi de votre présentation via WeTransfer</span><small>(optionnel)</small><svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+  <div class="st"><label class="qn" for="dt"><em>3</em>Votre deadline</label><input id="dt" name="deadline" type="date"></div>
+  <div class="st"><label class="qn" for="nm"><em>4</em>Votre prénom et nom</label><input id="nm" name="nom" type="text" autocomplete="name" placeholder="Prénom Nom"></div>
+  <div class="st"><label class="qn" for="em"><em>5</em>Votre e-mail</label><p class="opt-note">Obligatoire *</p><input id="em" name="email" type="email" required autocomplete="email" placeholder="Où puis-je vous répondre ?"></div>
+  <p class="err" role="alert"></p>
+  <div class="tfnav"><button type="button" class="back" hidden>← Retour</button><button type="button" class="pill nx icon" aria-label="Suivant"><span></span></button></div>
+  <div class="thanks" role="status"><p class="qn">Merci, votre message est bien parti !</p><p>Je reviens vers vous très vite.</p></div>
+ </form>
   </section>
 </main>
 
@@ -232,7 +246,7 @@
 <footer>
   <div class="wrap ft"><div><a class="flogo" href="index.html" aria-label="Accueil"><img src="marina-graphiste-powerpoint-freelance-logo.webp" alt=""><span>MerciMarina</span></a><p>Graphiste freelance experte PowerPoint. Des slides qui font la différence.</p></div>
   <div><h4>Plan du site</h4><ul><li><a href="index.html#services">Services</a></li><li><a href="index.html#realisations">Réalisations</a></li><li><a href="index.html#methode">Méthode</a></li><li><a href="index.html#temoignages">Témoignages</a></li></ul></div>
-  <div><h4>Contact</h4><ul><li><a class="mail" href="mailto:hello@mercimarina.fr">hello@mercimarina.fr</a></li><li><a href="index.html#contact">Démarrer votre projet</a></li><li>Réponse dans la journée</li></ul></div></div>
+  <div><h4>Contact</h4><ul><li><a class="mail" href="mailto:hello@mercimarina.fr">hello@mercimarina.fr</a></li><li><a href="#contact" data-open-form>Démarrer votre projet</a></li><li>Réponse dans la journée</li></ul></div></div>
   <div class="wrap fb"><span>© 2026 MerciMarina. Tous droits réservés.</span><span><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a></span></div>
   <div class="flogos" aria-hidden="true"><div class="rail">
         <img src="realisations/commun/logo-client-1.svg" width="106" height="23" alt="" loading="lazy" decoding="async">
@@ -246,6 +260,6 @@
   </div></div>
 </footer>
 
-<script src="realisation.js?v=2" defer></script>
+<script src="realisation.js?v=3" defer></script>
 </body>
 </html>
