@@ -60,9 +60,11 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 (()=>{
  const wk=$('.wks'),cards=$$('.wk',wk);
  wk.addEventListener('click',e=>{
-  const c=e.target.closest('.wk');if(!c)return;e.preventDefault();
+  const c=e.target.closest('.wk');if(!c)return;
+  const dead=c.getAttribute('href')==='#';if(dead)e.preventDefault();
   if(matchMedia('(hover:hover)').matches)return;
-  const on=c.classList.contains('on');cards.forEach(x=>x.classList.remove('on'));if(!on)c.classList.add('on');
+  const on=c.classList.contains('on');if(on&&!dead)return;
+  e.preventDefault();cards.forEach(x=>x.classList.remove('on'));if(!on)c.classList.add('on');
  });
  $$('#realisations .wnav .arrow').forEach(b=>b.addEventListener('click',()=>wk.scrollBy({left:(b.classList.contains('prev')?-1:1)*(wk.firstElementChild.offsetWidth+22)})));
 })();
