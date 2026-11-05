@@ -58,7 +58,7 @@
 .rz-bastate button{all:unset;cursor:pointer;padding:9px 20px;border-radius:999px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5b6784;transition:background .4s,color .4s}
 .rz-bastate button:hover{color:var(--ink)}
 .rz-bastate button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
-.rz-bastate button.on{background:linear-gradient(90deg,#ff7a1a,#ff4b00 55%,#c2185b);color:#fff;box-shadow:0 6px 16px rgba(255,75,0,.4)}
+.rz-bastate button.on{background:var(--ba-on,linear-gradient(90deg,#ff7a1a,#ff4b00 55%,#c2185b));color:#fff;box-shadow:0 6px 16px var(--ba-sh,rgba(255,75,0,.4))}
 #baA.on{background:var(--ink);box-shadow:none}
 .rz-bahint{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#fff}
 .rz-ic{flex:none;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
@@ -135,3 +135,4 @@
 }
 @media(max-width:700px){.rz-slcap{font-size:22px;margin:14px 0 8px}}
 @media(max-width:560px){.rz-bandt--ba{font-size:26px}}
+.rz-vk-myconnectingia .rz-vgl{background:rgba(70,16,120,.5)}
