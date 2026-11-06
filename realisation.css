@@ -174,3 +174,5 @@ header.site::before{content:"";position:absolute;left:0;right:0;top:calc(-1 * (e
 header.site.band::before{opacity:1;pointer-events:auto}
 /* Mobile : flèches du carrousel « À découvrir aussi » à 44 px */
 @media(max-width:600px){.rz-varr{width:44px;height:44px}}
+/* Mobile : pas de menu sur les pages réalisations (le bouton Retour suffit) */
+@media(max-width:600px){.burger,#nav{display:none!important}}
