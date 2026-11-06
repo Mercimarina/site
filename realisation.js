@@ -222,3 +222,9 @@
     if (location.hash === '#contact') open(true);
   })();
 })();
+
+/* Vignettes : pastille flèche (visible au survol sur PC) */
+(function(){
+  var f=document.querySelectorAll('.rz-vfl');
+  for(var i=0;i<f.length;i++)f[i].insertAdjacentHTML('beforeend','<span class="rz-voir" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#arr"/></svg></span>');
+})();
