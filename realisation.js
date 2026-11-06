@@ -12,11 +12,13 @@
   (function () {
     var b = $('.burger'), n = $('#nav');
     if (!b || !n) return;
-    var set = function (open) { b.setAttribute('aria-expanded', open); n.classList.toggle('open', open); };
+    var y0 = 0, set = function (open) { b.setAttribute('aria-expanded', open); n.classList.toggle('open', open); if (open) y0 = scrollY; };
     b.addEventListener('click', function (e) { e.stopPropagation(); set(b.getAttribute('aria-expanded') !== 'true'); });
     n.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
     document.addEventListener('click', function (e) { if (!n.contains(e.target)) set(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    // Menu ouvert : il se referme dès que l’on fait défiler la page
+    addEventListener('scroll', function () { if (n.classList.contains('open') && Math.abs(scrollY - y0) > 30) set(false); }, { passive: true });
   })();
 
   /* ── 2. Frise de logos du pied de page : on duplique la liste pour une boucle sans fin ── */

@@ -8,6 +8,9 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
  burger.addEventListener('click',()=>burger.setAttribute('aria-expanded',nav.classList.toggle('open')));
  links.forEach(a=>a.addEventListener('click',close));
  document.addEventListener('click',e=>{if(!e.target.closest('.hbar'))close()});
+ /* Menu ouvert : il se referme dès que l’on fait défiler la page */
+ let y0=0;burger.addEventListener('click',()=>{y0=scrollY});
+ addEventListener('scroll',()=>{if(nav.classList.contains('open')&&Math.abs(scrollY-y0)>30)close()},{passive:true});
  const head=$('header.site'),hero=$('.hero');
  const upd=()=>head.classList.toggle('solid',scrollY>hero.offsetHeight-70);
  addEventListener('scroll',upd,{passive:true});
