@@ -16,19 +16,24 @@
 <title>Graphiste PowerPoint freelance à Paris | MerciMarina</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Méthode : titres sur une ligne, illustrations réduites en haut à droite */
+/* Méthode : titres sur une ligne */
 .step .ttl{display:block;margin-top:auto!important}
 .step h3{font-size:26px;line-height:1.15;white-space:nowrap}
 .step h3 .lt{display:inline;font-weight:400;opacity:.85}
-.step .ill{position:absolute;top:20px;right:16px;z-index:1;margin:0!important;transform:none}
-.step:nth-of-type(1) .ill{width:33%}
-.step:nth-of-type(2) .ill{width:28%;top:14px}
-.step:nth-of-type(3) .ill{width:27%}
-.step:nth-of-type(4) .ill{width:37%}
+/* Méthode : illustrations centrées sur les emplacements définis (proportionnels à la largeur de la carte) */
+.step{container-type:inline-size}
+.step .ill{position:absolute;right:auto;height:auto;margin:0!important;transform:none;z-index:1}
+.step:nth-of-type(1) .ill{width:29.05%;left:64.7%;top:calc((100cqw + 60px) * .0634)}
+.step:nth-of-type(2) .ill{width:29.09%;left:66.05%;top:calc((100cqw + 60px) * .0724)}
+.step:nth-of-type(3) .ill{width:25.68%;left:67.98%;top:calc((100cqw + 60px) * .0455)}
+.step:nth-of-type(4) .ill{width:29.18%;left:65.85%;top:calc((100cqw + 60px) * .0963)}
 @media (min-width:1400px){
  .step h3{font-size:clamp(20px,calc(2.5vw - 14px),26px)}
- .step .ill,.step:nth-of-type(2) .ill{top:66px}
  .step .ttl{margin-top:116px!important}
+}
+/* Cartes étroites : l'illustration passe juste sous le badge pour ne pas le chevaucher */
+@media (max-width:760px),(min-width:1400px) and (max-width:1611px){
+ .step:nth-of-type(n) .ill{top:66px}
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MerciMarina","url":"https://mercimarina.fr/","image":"https://mercimarina.fr/og-image.jpg","email":"hello@mercimarina.fr","description":"Graphiste PowerPoint freelance : présentations commerciales, pitch decks, supports de formation, conférences et appels d’offres sur mesure.","founder":{"@type":"Person","name":"Marina","jobTitle":"Graphiste PowerPoint freelance"},"address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"areaServed":["Paris","France"],"serviceType":["Présentation commerciale","Pitch deck","Support de formation","Conférence et événement","Appel d’offres"],"sameAs":["https://www.malt.fr/profile/marinavu"]}</script>
