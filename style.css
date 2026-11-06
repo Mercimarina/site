@@ -444,3 +444,11 @@ section.sg{position:relative;padding:56px 0 80px}
 /* Méthode : même espace entre le titre et le texte sur toutes les cartes (l’illustration ne repousse plus le texte) */
 .step .ttl .ill{margin-bottom:-300px}
 .step p{margin-top:32px}
+/* Mobile : le sticker (avatar) seul reste visible en haut à gauche */
+@media(max-width:600px){
+ .brand{display:flex;padding:0;height:auto;background:none!important;border:0!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+ .brand span{display:none}
+ .brand img{height:48px;margin:0}
+}
+/* Mobile : flèches des carrousels à 44 px, taille conseillée pour le doigt */
+@media(max-width:600px){.arrow,.tb{width:44px;height:44px}}

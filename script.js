@@ -23,7 +23,7 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 (()=>{
  const LG=[["logo-client-01.svg",106,23],["logo-client-02.svg",112,25],["logo-client-03.svg",124,19],["logo-client-04.svg",84,29],["logo-client-05.svg",88,27],["logo-client-06.svg",75,36],["logo-client-07.svg",95,24],["logo-client-08.svg",128,24]];
  const gap=52,setW=LG.reduce((a,l)=>a+l[1]+gap,0),K=Math.ceil(Math.max(innerWidth,screen.width||0,1920)/setW)+1;
- ['rail','rail2'].forEach(id=>{const r=document.getElementById(id);
+ ['rail'].forEach(id=>{const r=document.getElementById(id);if(!r)return;
   for(let c=0;c<2*K;c++)LG.forEach(l=>{const im=new Image();im.alt='';im.src=l[0];im.style.width=l[1]+'px';im.style.height=l[2]+'px';r.appendChild(im)});
   r.style.animationDuration=(K*setW/55)+'s'});
 })();
@@ -43,10 +43,11 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Carrousel « style graphique » : 2 rangées de slides en défilement continu, élan au scroll, ralenti au survol */
 (() => {
-  const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck'};
+  const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck', huh:'HUH? School · Présentation commerciale', ent:'Entourage · Présentation donateurs'};
+  // 18 slides en 2 rangées de 9 : projets et tons (clair / foncé / photo) alternés, y compris au raccord de la boucle
   const ROWS = [
-    ['myc-03','she-07','fyd-05','myc-13','she-04','fyd-09','myc-06','she-15'],
-    ['she-13','fyd-01','myc-01','she-03','fyd-13','myc-02','she-08','fyd-11']
+    ['huh-c2','fyd-c1','myc-c3','ent-c1','huh-c5','fyd-c2','myc-c1','ent-c4','fyd-c5'],
+    ['huh-c1','ent-c2','myc-c2','fyd-c3','ent-c3','huh-c3','fyd-c4','huh-c4','fyd-c6']
   ];
   const SPEED = [22, 22], DIR = [-1, 1];
   const plane = document.getElementById('sg-plane'), stage = document.getElementById('sg-stage');

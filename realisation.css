@@ -172,4 +172,5 @@
 /* En-tête : bande blanche dès que l’on fait défiler la page */
 header.site::before{content:"";position:absolute;left:0;right:0;top:calc(-1 * (env(safe-area-inset-top,0px) + 10px));height:calc(env(safe-area-inset-top,0px) + 80px);background:var(--bg);box-shadow:0 1px 0 var(--line),0 8px 24px rgba(20,70,160,.08);opacity:0;transition:opacity .3s;pointer-events:none}
 header.site.band::before{opacity:1;pointer-events:auto}
-
+/* Mobile : flèches du carrousel « À découvrir aussi » à 44 px */
+@media(max-width:600px){.rz-varr{width:44px;height:44px}}
