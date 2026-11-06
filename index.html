@@ -29,36 +29,22 @@
 .about .sub{text-transform:none;letter-spacing:0;font-size:17px;font-weight:600}
 /* Typo : numéro du formulaire sans italique */
 .qn em{font:700 1em/1 var(--f);font-style:normal}
-/* Carrousel « style graphique » v2 */
-.sg-head{padding-top:100px;padding-bottom:40px;text-align:center}
-.sg-stage{position:relative;height:clamp(380px,44vw,580px);overflow:hidden;isolation:isolate;width:min(1360px,calc(100% - 32px));margin-inline:auto;border-radius:32px;
- background:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px) 0 0/48px 48px,radial-gradient(120% 90% at 50% 0%,#f4f9ff 0%,#dcecfe 55%,#c9e1fd 100%);
- box-shadow:0 0 0 1px rgba(6,18,46,.06) inset,0 30px 60px -40px rgba(6,18,46,.35)}
-.sg-stage::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:0 1px 0 rgba(255,255,255,.9) inset}
-.sg-persp{position:absolute;inset:0;perspective:1700px;perspective-origin:50% 30%}
-.sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:26px;transform:translate(-50%,-50%) rotateX(24deg) rotateZ(-8deg);transform-style:preserve-3d}
-.sg-row{display:flex;gap:26px;will-change:transform}
-.sg-tile{position:relative;flex:0 0 auto;width:360px;aspect-ratio:16/9;max-width:none;border-radius:14px;overflow:hidden;background:#eaf3fe;
- box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.06),0 24px 40px -22px rgba(6,18,46,.45),0 8px 14px -10px rgba(6,18,46,.18);transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .5s,filter .5s,box-shadow .45s}
+/* Carrousel « style graphique » v3 : grand panneau, 4 rangées inclinées à plat */
+.sg-head{padding-top:100px;padding-bottom:44px;text-align:center}
+.sg-note{margin:18px auto 0;max-width:60ch;font-size:15px;color:var(--muted);text-wrap:balance}
+.sg-stage{position:relative;height:clamp(440px,56vw,760px);overflow:hidden;isolation:isolate;width:min(1520px,calc(100% - 32px));margin:0 auto 110px;
+ background:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,radial-gradient(110% 80% at 50% 10%,#f5f9ff 0%,#d9eafe 50%,#bcd8fb 100%);
+ box-shadow:0 0 0 1px rgba(6,18,46,.06) inset,0 40px 80px -50px rgba(6,18,46,.45)}
+.sg-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 0 80px 10px rgba(30,70,140,.16) inset}
+.sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:30px;transform:translate(-50%,-50%) rotate(-8deg)}
+.sg-row{display:flex;gap:30px;will-change:transform}
+.sg-tile{position:relative;flex:0 0 auto;width:400px;aspect-ratio:16/9;max-width:none;border-radius:16px;overflow:hidden;background:#eaf3fe;
+ box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.06),0 30px 46px -24px rgba(6,18,46,.5),0 10px 16px -10px rgba(6,18,46,.2);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
 .sg-tile img{display:block;width:100%;height:100%;object-fit:cover}
-.sg-lab{position:absolute;left:10px;bottom:10px;padding:6px 11px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
-.sg-tile:hover{transform:translateY(-10px) scale(1.035);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.08),0 40px 60px -26px rgba(6,18,46,.55),0 10px 18px -10px rgba(6,18,46,.2)}
+.sg-lab{position:absolute;left:12px;bottom:12px;padding:7px 12px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.sg-tile:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.08),0 50px 70px -30px rgba(6,18,46,.6),0 12px 20px -10px rgba(6,18,46,.22)}
 .sg-tile:hover .sg-lab{opacity:1;transform:none}
-.sg-stage[data-focus] .sg-tile{opacity:.18;filter:grayscale(1)}
-.sg-stage[data-focus="myc"] .sg-tile[data-p="myc"],.sg-stage[data-focus="she"] .sg-tile[data-p="she"],.sg-stage[data-focus="fyd"] .sg-tile[data-p="fyd"]{opacity:1;filter:none}
-.sg-foot{display:flex;flex-direction:column;align-items:center;gap:18px;padding:30px 16px 20px}
-.sg-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.sg-chip{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:500 14px/1 var(--f);cursor:pointer;transition:border-color .2s,box-shadow .2s}
-.sg-chip small{color:var(--muted);font-size:13px;font-weight:400}
-.sg-chip i{width:9px;height:9px;border-radius:50%;flex:none}
-.sg-chip[data-p="myc"] i{background:#5b17a8}.sg-chip[data-p="she"] i{background:#0b3fa6}.sg-chip[data-p="fyd"] i{background:#6a2bff}
-.sg-chip:hover{border-color:#c9d6ea}
-.sg-chip[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink) inset}
-.sg-chip:focus-visible,.sg-pause:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
-.sg-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--muted);text-align:left}
-.sg-pause{display:inline-grid;place-items:center;flex:none;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);cursor:pointer}
-.sg-pause svg{width:12px;height:12px;fill:currentColor}
-@media (max-width:700px){.sg-head{padding-top:72px;padding-bottom:24px}.sg-stage{border-radius:22px}.sg-tile{width:236px;border-radius:11px}.sg-row,.sg-plane{gap:16px}.sg-plane{transform:translate(-50%,-50%) rotateX(20deg) rotateZ(-8deg)}.sg-chip small{display:none}}
+@media (max-width:700px){.sg-head{padding-top:72px;padding-bottom:28px}.sg-stage{height:clamp(420px,120vw,560px);margin-bottom:72px}.sg-tile{width:250px;border-radius:12px}.sg-row,.sg-plane{gap:18px}}
 @media (prefers-reduced-motion:reduce){.sg-tile,.sg-lab{transition:none}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MerciMarina","url":"https://mercimarina.fr/","image":"https://mercimarina.fr/og-image.jpg","email":"hello@mercimarina.fr","description":"Graphiste PowerPoint freelance : présentations commerciales, pitch decks, supports de formation, conférences et appels d’offres sur mesure.","founder":{"@type":"Person","name":"Marina","jobTitle":"Graphiste PowerPoint freelance"},"address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"areaServed":["Paris","France"],"serviceType":["Présentation commerciale","Pitch deck","Support de formation","Conférence et événement","Appel d’offres"],"sameAs":["https://www.malt.fr/profile/marinavu"]}</script>
@@ -118,16 +104,8 @@
 
 <!-- 4 · Carrousel « style graphique » (v2 : plateau en perspective) -->
 <section class="sg" aria-labelledby="sg-t">
- <div class="wrap sg-head"><p class="kicker">Style graphique</p><h2 class="title" id="sg-t">À chaque projet<br>son style graphique</h2></div>
- <div class="sg-stage" id="sg-stage" aria-label="Exemples de slides réalisées pour MyconnectingIA, Sherpa et Fydem"><div class="sg-persp"><div class="sg-plane" id="sg-plane"></div></div></div>
- <div class="sg-foot">
-  <div class="sg-legend" role="group" aria-label="Mettre un projet en lumière">
-   <button class="sg-chip" type="button" data-p="myc" aria-pressed="false"><i></i>MyconnectingIA <small>Présentation commerciale</small></button>
-   <button class="sg-chip" type="button" data-p="she" aria-pressed="false"><i></i>Sherpa <small>Support de formation</small></button>
-   <button class="sg-chip" type="button" data-p="fyd" aria-pressed="false"><i></i>Fydem <small>Pitch deck</small></button>
-  </div>
-  <div class="sg-meta"><button class="sg-pause" type="button" id="sg-pause" aria-label="Mettre l'animation en pause" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1" width="3" height="10" rx="1"/><rect x="7.5" y="1" width="3" height="10" rx="1"/></svg></button><span>Pour des raisons de confidentialité, certaines slides contiennent du faux texte.</span></div>
- </div>
+ <div class="wrap sg-head"><p class="kicker">Style graphique</p><h2 class="title" id="sg-t">À chaque projet<br>son style graphique</h2><p class="sg-note">Pour des raisons de confidentialité, certaines slides contiennent du faux texte.</p></div>
+ <div class="sg-stage" id="sg-stage" role="img" aria-label="Mosaïque animée de slides réalisées pour MyconnectingIA, Sherpa et Fydem"><div class="sg-plane" id="sg-plane"></div></div>
  <div hidden><div id="reel"></div></div><!-- conservé vide pour script.js -->
 </section>
 
@@ -207,83 +185,48 @@
 <script>
 (() => {
   const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck'};
-  // Trois rangées, projets alternés pour éviter les blocs de couleur
   const ROWS = [
-    ['myc-01','she-01','fyd-01','myc-03','she-03','fyd-05','myc-13','she-13'],
-    ['fyd-03','myc-02','she-07','fyd-09','myc-06','she-15','fyd-13','myc-10'],
-    ['she-05','fyd-06','myc-04','she-08','fyd-11','myc-14','she-17','fyd-16']
+    ['she-13','fyd-05','myc-03','she-07','fyd-13','myc-14'],
+    ['myc-01','she-04','fyd-01','myc-13','she-03','fyd-09'],
+    ['fyd-03','myc-02','she-15','fyd-11','myc-06','she-05'],
+    ['she-08','myc-10','fyd-06','she-17','myc-04','fyd-16']
   ];
-  const SPEED = [26, 18, 30];          // px/s, rangée du milieu plus lente
-  const DIR = [-1, 1, -1];
+  const SPEED = [16, 24, 20, 28], DIR = [1, -1, 1, -1];
   const plane = document.getElementById('sg-plane'), stage = document.getElementById('sg-stage');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const rows = ROWS.map((ids, r) => {
+  const rows = ROWS.map(ids => {
     const row = document.createElement('div'); row.className = 'sg-row';
-    const set = ids.concat(ids, ids);   // trois copies : boucle sans couture
-    set.forEach((id, i) => {
-      const p = id.slice(0,3), t = document.createElement('div');
-      t.className = 'sg-tile'; t.dataset.p = p;
-      const im = new Image(); im.src = id + '.webp'; im.alt = i < ids.length ? P[p].split(' · ')[0] + ', exemple de slide' : '';
-      im.decoding = 'async'; im.loading = r === 1 || i < 6 ? 'eager' : 'lazy';
-      const lab = document.createElement('span'); lab.className = 'sg-lab'; lab.textContent = P[p]; lab.setAttribute('aria-hidden','true');
+    ids.concat(ids, ids).forEach(id => {
+      const p = id.slice(0,3), t = document.createElement('div'); t.className = 'sg-tile';
+      const im = new Image(); im.src = id + '.webp'; im.alt = ''; im.decoding = 'async';
+      const lab = document.createElement('span'); lab.className = 'sg-lab'; lab.textContent = P[p];
       t.append(im, lab); row.append(t);
     });
     plane.append(row);
     return {el: row, n: ids.length, x: 0, w: 0, hover: 0};
   });
-
-  const measure = () => rows.forEach(r => {
-    const a = r.el.children[0], b = r.el.children[r.n];
-    r.w = b.offsetLeft - a.offsetLeft;       // largeur d'une série
-    r.x = -r.w * (0.3 + 0.2 * rows.indexOf(r));
-  });
-  const place = () => rows.forEach(r => { r.el.style.transform = `translate3d(${r.x}px,0,0)`; });
-
-  rows.forEach(r => {
-    r.el.addEventListener('pointerenter', () => r.hover = 1);
-    r.el.addEventListener('pointerleave', () => r.hover = 0);
-  });
-
-  // Le scroll de la page pousse le plateau, comme sur le site actuel, avec inertie
-  let boost = 0, lastY = scrollY, paused = reduced, last = performance.now();
-  addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.9; lastY = scrollY; }, {passive:true});
-
+  const measure = () => rows.forEach((r, i) => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; r.x = -r.w * (0.25 + 0.17 * i); });
+  rows.forEach(r => { r.el.addEventListener('pointerenter', () => r.hover = 1); r.el.addEventListener('pointerleave', () => r.hover = 0); });
+  let boost = 0, lastY = scrollY, visible = true, last = performance.now();
+  addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.8; lastY = scrollY; }, {passive:true});
+  new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(stage);
   function frame(now) {
     const dt = Math.min(64, now - last) / 1000; last = now;
-    boost *= Math.pow(0.04, dt);              // amortissement de l'élan
-    rows.forEach((r, i) => {
-      const slow = r.hover ? 0.12 : 1;
-      const v = paused ? 0 : SPEED[i] * slow;
-      r.x += DIR[i] * (v * dt + (reduced ? 0 : boost * dt * 3));
-      if (r.x <= -2 * r.w) r.x += r.w;
-      if (r.x > -r.w * 0.05) r.x -= r.w;
-    });
-    place(); requestAnimationFrame(frame);
+    if (visible) {
+      boost *= Math.pow(0.04, dt);
+      rows.forEach((r, i) => {
+        if (!reduced) {
+          r.x += DIR[i] * (SPEED[i] * (r.hover ? 0.12 : 1) * dt + boost * dt * 3 * (1 + i * .15));
+          if (r.x <= -2 * r.w) r.x += r.w;
+          if (r.x > -r.w * 0.05) r.x -= r.w;
+        }
+        r.el.style.transform = `translate3d(${r.x}px,0,0)`;
+      });
+    }
+    requestAnimationFrame(frame);
   }
-
-  addEventListener('load', () => { measure(); place(); });
-  addEventListener('resize', () => { measure(); place(); });
-  measure(); place(); requestAnimationFrame(frame);
-
-  // Légende : met un projet en lumière
-  document.querySelectorAll('.sg-chip').forEach(c => c.addEventListener('click', () => {
-    const on = c.getAttribute('aria-pressed') !== 'true';
-    document.querySelectorAll('.sg-chip').forEach(o => o.setAttribute('aria-pressed', 'false'));
-    c.setAttribute('aria-pressed', String(on));
-    if (on) stage.dataset.focus = c.dataset.p; else delete stage.dataset.focus;
-  }));
-
-  // Pause (accessibilité : tout contenu qui bouge en continu doit pouvoir s'arrêter)
-  const pb = document.getElementById('sg-pause');
-  const setPause = v => {
-    paused = v; pb.setAttribute('aria-pressed', String(v));
-    pb.setAttribute('aria-label', v ? "Relancer l'animation" : "Mettre l'animation en pause");
-    pb.innerHTML = v ? '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z"/></svg>'
-                     : '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1" width="3" height="10" rx="1"/><rect x="7.5" y="1" width="3" height="10" rx="1"/></svg>';
-  };
-  pb.addEventListener('click', () => setPause(!paused));
-  if (reduced) setPause(true);
+  addEventListener('load', measure); addEventListener('resize', measure);
+  measure(); requestAnimationFrame(frame);
 })();
 </script>
 </body>
