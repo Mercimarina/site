@@ -394,3 +394,14 @@ footer a{text-decoration:none}
  .st.on{animation:none}
  .fi,.tc{transition:none}
 }
+
+/* Réalisations : bouton « Voir » (apparaît au survol sur PC) */
+.fl{position:relative}
+.voir{position:absolute;left:50%;bottom:22px;transform:translate(-50%,10px);display:inline-flex;align-items:center;gap:.9em;background:#fff;color:#000;border-radius:999px;padding:6px 6px 6px 22px;font:700 15px var(--f);opacity:0;pointer-events:none;transition:opacity .3s .15s,transform .3s .15s;box-shadow:0 8px 22px rgba(0,0,0,.28);z-index:2}
+.voir .ic{width:36px;height:36px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;flex:none}
+.voir .ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media (hover:hover){
+ .wk:hover .voir,.wk:focus-visible .voir{opacity:1;transform:translate(-50%,0)}
+ .wk:hover .voir .ic{background:linear-gradient(135deg,#7dbafa,#4f93ee);color:#000}
+}
+@media (hover:none){.voir{display:none}}

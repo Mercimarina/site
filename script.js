@@ -56,15 +56,17 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
  if(!reduced)addEventListener('scroll',()=>{calc();if(!raf)raf=requestAnimationFrame(loop)},{passive:true});
 })();
 
-/* Réalisations : flèches et retournement au toucher */
+/* Réalisations : bouton « Voir » au survol (PC) + un seul clic/tap pour ouvrir la page */
 (()=>{
- const wk=$('.wks'),cards=$$('.wk',wk);
+ const wk=$('.wks');
+ $$('.wk',wk).forEach(c=>{
+  const fl=$('.fl',c);if(!fl)return;
+  fl.insertAdjacentHTML('beforeend','<span class="voir" aria-hidden="true">Voir<i class="ic"><svg viewBox="0 0 24 24"><use href="#arr"/></svg></i></span>');
+ });
  wk.addEventListener('click',e=>{
   const c=e.target.closest('.wk');if(!c)return;
-  const dead=c.getAttribute('href')==='#';if(dead)e.preventDefault();
-  if(matchMedia('(hover:hover)').matches)return;
-  const on=c.classList.contains('on');if(on&&!dead)return;
-  e.preventDefault();cards.forEach(x=>x.classList.remove('on'));if(!on)c.classList.add('on');
+  const h=c.getAttribute('href');
+  if(!h||h==='#')e.preventDefault(); /* cartes sans page : on ne fait rien */
  });
  $$('#realisations .wnav .arrow').forEach(b=>b.addEventListener('click',()=>wk.scrollBy({left:(b.classList.contains('prev')?-1:1)*(wk.firstElementChild.offsetWidth+22)})));
 })();
