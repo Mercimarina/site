@@ -21,6 +21,19 @@
     addEventListener('scroll', function () { if (n.classList.contains('open') && Math.abs(scrollY - y0) > 30) set(false); }, { passive: true });
   })();
 
+  /* ── 1 bis. En-tête : bande blanche au défilement + flèche retour ── */
+  (function () {
+    var h = $('header.site'), back = $('[data-back]');
+    if (h) {
+      var upd = function () { h.classList.toggle('band', scrollY > 20); };
+      addEventListener('scroll', upd, { passive: true }); upd();
+    }
+    // Retour : revient à la page précédente du site, sinon à la section Réalisations de l’accueil
+    if (back) back.addEventListener('click', function (e) {
+      try { if (document.referrer && new URL(document.referrer).host === location.host && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {}
+    });
+  })();
+
   /* ── 2. Frise de logos du pied de page : on duplique la liste pour une boucle sans fin ── */
   (function () {
     var rail = $('.flogos .rail');
