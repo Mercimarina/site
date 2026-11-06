@@ -62,7 +62,15 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
     plane.append(row);
     return {el: row, n: ids.length, x: 0, w: 0, hover: 0};
   });
-  const measure = () => rows.forEach((r, i) => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; r.x = -r.w * (0.5 + 0.25 * i); });
+  // Chaque rangée contient 3 fois la même série. On garde son décalage entre -w/2 et +w/2 (w = largeur d'une série) :
+  // l'écran est alors toujours couvert et, après la dernière slide, la première revient sans rupture.
+  const wrap = r => { if (!r.w) return; while (r.x < -r.w / 2) r.x += r.w; while (r.x > r.w / 2) r.x -= r.w; };
+  let started = false;
+  const measure = () => rows.forEach((r, i) => {
+    r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft;
+    if (!started) r.x = -r.w * 0.25 * i;
+    wrap(r);
+  }) || (started = true);
   rows.forEach(r => { r.el.addEventListener('pointerenter', () => r.hover = 1); r.el.addEventListener('pointerleave', () => r.hover = 0); });
   let boost = 0, lastY = scrollY, visible = true, last = performance.now();
   addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.8; lastY = scrollY; }, {passive:true});
@@ -74,8 +82,7 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
       rows.forEach((r, i) => {
         if (!reduced) {
           r.x += DIR[i] * (SPEED[i] * (r.hover ? 0.12 : 1) * dt + boost * dt * 3 * (1 + i * .15));
-          if (r.x <= -2 * r.w) r.x += r.w;
-          if (r.x > -r.w * 0.05) r.x -= r.w;
+          wrap(r);
         }
         r.el.style.transform = `translate3d(${r.x}px,0,0)`;
       });
