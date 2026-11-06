@@ -44,11 +44,12 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* Carrousel « style graphique » : 2 rangées de slides en défilement continu, élan au scroll, ralenti au survol */
 (() => {
   const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck', huh:'HUH? School · Présentation commerciale', ent:'Entourage · Présentation donateurs'};
-  // 18 slides en 2 rangées de 9 : projets et tons (clair / foncé / photo) alternés, y compris au raccord de la boucle
+  // Ordre choisi par Marina ; au chargement, « Value proposition » (fyd-c3) est centrée à l'écran
   const ROWS = [
-    ['huh-c2','fyd-c1','myc-c3','ent-c1','huh-c5','fyd-c2','myc-c1','ent-c4','fyd-c5'],
-    ['huh-c1','ent-c2','myc-c2','fyd-c3','ent-c3','huh-c3','fyd-c4','huh-c4','fyd-c6']
+    ['huh-c4','fyd-c6','she-c2','myc-c2','fyd-c3','fyd-c1','fyd-c2','huh-c3','huh-c5','ent-c3'],
+    ['fyd-c4','fyd-c5','myc-c3','huh-c1','myc-c1','she-c1','huh-c2','ent-c1','ent-c2']
   ];
+  const START = 4, ROW2_SHIFT = 0.72;   // slide de départ (rangée 1) et décalage de la rangée 2, en largeur de slide
   const SPEED = [22, 22], DIR = [-1, 1];
   const plane = document.getElementById('sg-plane'), stage = document.getElementById('sg-stage');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -67,24 +68,59 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
   // l'écran est alors toujours couvert et, après la dernière slide, la première revient sans rupture.
   const wrap = r => { if (!r.w) return; while (r.x < -r.w / 2) r.x += r.w; while (r.x > r.w / 2) r.x -= r.w; };
   let started = false;
-  const measure = () => rows.forEach((r, i) => {
-    r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft;
-    if (!started) r.x = -r.w * 0.25 * i;
-    wrap(r);
-  }) || (started = true);
+  const measure = () => {
+    rows.forEach(r => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; });
+    if (!started) {
+      // Position de départ : la slide START de la rangée 1 au centre, la rangée 2 décalée comme sur la maquette
+      const sc = stage.getBoundingClientRect(), cx = sc.left + sc.width / 2;
+      const a = rows[0].el.children[rows[0].n + START].getBoundingClientRect();
+      rows[0].x = cx - (a.left + a.width / 2);
+      const pitch = rows[0].w / rows[0].n;
+      const l0 = rows[0].el.children[rows[0].n].getBoundingClientRect().left + rows[0].x;
+      const l1 = rows[1].el.children[rows[1].n].getBoundingClientRect().left;
+      rows[1].x = l0 + ROW2_SHIFT * pitch - l1;
+      started = true;
+    }
+    rows.forEach(r => { wrap(r); r.el.style.transform = `translate3d(${r.x}px,0,0)`; });
+  };
   rows.forEach(r => { r.el.addEventListener('pointerenter', () => r.hover = 1); r.el.addEventListener('pointerleave', () => r.hover = 0); });
-  let boost = 0, lastY = scrollY, visible = true, last = performance.now();
+  // Glisser une rangée à la souris (cliquer-glisser) ou au doigt (gauche/droite), avec un élan au relâchement
+  rows.forEach(r => { r.v = 0; r.drag = false; });
+  let act = null;
+  const move = r => { wrap(r); r.el.style.transform = `translate3d(${r.x}px,0,0)`; };
+  stage.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    const el = e.target.closest('.sg-row'); if (!el) return;
+    act = {r: rows.find(r => r.el === el), x0: e.clientX, y0: e.clientY, lx: e.clientX, lt: performance.now(), id: e.pointerId, on: false};
+  });
+  addEventListener('pointermove', e => {
+    if (!act || e.pointerId !== act.id) return;
+    if (!act.on) {
+      const ax = Math.abs(e.clientX - act.x0), ay = Math.abs(e.clientY - act.y0);
+      if (ax < 6 && ay < 6) return;
+      if (ay > ax) { act = null; return; }          // geste vertical : on laisse la page défiler
+      act.on = true; act.r.drag = true; act.r.v = 0; stage.classList.add('is-drag');
+      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+    const t = performance.now(), dx = e.clientX - act.lx;
+    act.r.x += dx; act.r.v = Math.max(-3000, Math.min(3000, dx / Math.max(8, t - act.lt) * 1000));
+    act.lx = e.clientX; act.lt = t; move(act.r);
+  });
+  const end = e => { if (!act || (e && e.pointerId !== act.id)) return; if (performance.now() - act.lt > 80) act.r.v = 0; act.r.drag = false; act = null; stage.classList.remove('is-drag'); };
+  addEventListener('pointerup', end); addEventListener('pointercancel', end);
+  let boost = 0, lastY = scrollY, visible = false, last = performance.now();
   addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.8; lastY = scrollY; }, {passive:true});
-  new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(stage);
+  // Le carrousel reste sur sa position de départ jusqu'à ce qu'il apparaisse à l'écran
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !visible) boost = 0; visible = e.isIntersecting; })).observe(stage);
   function frame(now) {
     const dt = Math.min(64, now - last) / 1000; last = now;
     if (visible) {
       boost *= Math.pow(0.04, dt);
       rows.forEach((r, i) => {
-        if (!reduced) {
-          r.x += DIR[i] * (SPEED[i] * (r.hover ? 0.12 : 1) * dt + boost * dt * 3 * (1 + i * .15));
-          wrap(r);
-        }
+        if (r.drag) return;
+        r.x += r.v * dt; r.v *= Math.pow(0.03, dt);   // élan après un glisser
+        if (!reduced) r.x += DIR[i] * (SPEED[i] * (r.hover ? 0.12 : 1) * dt + boost * dt * 3 * (1 + i * .15));
+        wrap(r);
         r.el.style.transform = `translate3d(${r.x}px,0,0)`;
       });
     }

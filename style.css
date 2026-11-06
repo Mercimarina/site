@@ -452,3 +452,9 @@ section.sg{position:relative;padding:56px 0 80px}
 }
 /* Mobile : flèches des carrousels à 44 px, taille conseillée pour le doigt */
 @media(max-width:600px){.arrow,.tb{width:44px;height:44px}}
+/* Carrousel : rangées centrées (elles n’ont pas toutes le même nombre de slides) */
+.sg-plane{justify-items:center}
+/* Carrousel : on peut le faire glisser (souris ou doigt) ; le défilement vertical de la page reste possible */
+.sg-stage{cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.sg-stage.is-drag{cursor:grabbing}
+.sg-tile img{pointer-events:none;-webkit-user-drag:none}
