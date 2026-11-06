@@ -154,3 +154,12 @@
 .rz-vgl{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);background:rgba(30,40,70,.28)}
 .rz-vk-entourage .rz-vgl{background:rgba(130,24,10,.34)}
 .rz-vk-sherpa .rz-vgl{background:rgba(10,44,120,.4)}
+
+/* Logo client carré (ex. HUH? School) : en couleurs d'origine, à la hauteur du logo Marina */
+.rz-lg.rz-lg--sq{height:84px;filter:none}
+@media (max-width:760px){.rz-lg.rz-lg--sq{height:60px}}
+
+/* Paires de slides qui se prolongent : deux slides distinctes, l'une sous l'autre */
+.rz-stack{display:flex;flex-direction:column;gap:12px}
+/* Avant/après : sur grand écran, les paires sont alignées en colonne ; en dessous de 1000 px, on les garde côte à côte dans l'ordre de lecture */
+@media(max-width:1000px){.rz-batile{order:var(--o,0)}}

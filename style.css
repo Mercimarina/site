@@ -136,16 +136,6 @@ nav a.on{background:var(--mist);color:var(--ink);font-weight:700}
  .in{padding:6px 0 30px}
 }
 
-/* ============ 4 · Carrousel en biais ============ */
-.reelhead{padding-top:100px;padding-bottom:44px}
-.note{margin-top:18px;text-align:center;font-size:15px;color:var(--muted)}
-.reel{position:relative;overflow:hidden;height:440px}
-.tilt{position:absolute;left:-20%;width:140%;top:50%;transform:translateY(-50%) rotate(-5deg)}
-.row{display:flex;gap:16px;width:max-content;margin-bottom:16px;will-change:transform;backface-visibility:hidden}
-.row:last-child{margin-bottom:0}
-.tile{flex:none;width:240px;height:135px;border-radius:12px;overflow:hidden;background:var(--mist)}
-.tile img{display:block;width:100%;height:100%;object-fit:cover}
-
 /* ============ 5 · Réalisations ============ */
 .band{background:linear-gradient(180deg,var(--mist) 0%,color-mix(in srgb,var(--sky) 30%,var(--bg)) 100%)}
 #realisations{padding:50px 0 64px}
@@ -336,7 +326,6 @@ footer a{text-decoration:none}
 /* ============ Mobile ============ */
 @media(max-width:600px){
  section{padding:72px 0}
- .reelhead{padding-top:72px;padding-bottom:32px}
  #realisations{padding:72px 0 80px}
  .method{padding-top:72px}
  .title{font-size:clamp(28px,8vw,36px);text-wrap:balance}
@@ -412,3 +401,43 @@ footer a{text-decoration:none}
 
 /* Flèche noire sur les cartes Sherpa et HUH? School */
 .k-she .voir,.k-huh .voir{color:#000}
+
+/* ============ Ajustements de la page d’accueil (novembre 2026) ============ */
+/* Méthode : titre sur deux lignes, entièrement en gras, illustration à côté du titre */
+.step h3{font-size:clamp(22px,6vw,28px);white-space:nowrap}
+.step h3 .lt{display:block}
+@media (min-width:1400px){.step h3{font-size:clamp(20px,calc(2.5vw - 14px),28px)}}
+/* Typo : services en minuscules et semi-gras */
+.item > button{text-transform:none;letter-spacing:0}
+.tt b{font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:-.01em}
+/* Typo : majuscules réservées aux sur-titres */
+.glass h3{text-transform:none}
+.tag{text-transform:none;letter-spacing:0;font-size:12px}
+.about .sub{text-transform:none;letter-spacing:0;font-size:17px;font-weight:600}
+/* Typo : numéro du formulaire sans italique */
+.qn em{font:700 1em/1 var(--f);font-style:normal}
+/* Réalisations + carrousel « style graphique » : un seul bandeau bleu quadrillé.
+   Le carrousel reprend la mise en forme du bandeau « Une cohérence visuelle » des pages réalisations. */
+.band{background:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(180deg,#eef6ff 0%,#dcecfe 45%,#c3dcfb 100%)}
+#realisations{padding-bottom:24px}
+section.sg{position:relative;padding:56px 0 80px}
+.sg-head{padding:0 24px 44px;text-align:center}
+.sg-note{margin:16px auto 0;max-width:60ch;font-size:15px;color:var(--muted);text-wrap:balance}
+.sg-stage{position:relative;overflow:hidden;height:560px;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:24px;transform:translate(-50%,-50%)}
+.sg-row{display:flex;gap:24px;will-change:transform}
+.sg-tile{position:relative;flex:0 0 auto;width:440px;aspect-ratio:16/9;max-width:none;border:5px solid rgba(255,255,255,.6);border-radius:20px;overflow:hidden;background:#eaf3fe;
+ box-shadow:0 12px 30px rgba(20,40,110,.16);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.sg-tile img{display:block;width:100%;height:100%;object-fit:cover}
+.sg-lab{position:absolute;left:10px;bottom:10px;padding:7px 12px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.sg-tile:hover{transform:translateY(-6px)}
+.sg-tile:hover .sg-lab{opacity:1;transform:none}
+@media (max-width:700px){#realisations{padding-bottom:16px}section.sg{padding:40px 0 64px}.sg-head{padding-bottom:32px}.sg-stage{height:310px}.sg-tile{width:250px;border-width:4px;border-radius:14px}.sg-row,.sg-plane{gap:16px}}
+@media (prefers-reduced-motion:reduce){.sg-tile,.sg-lab{transition:none}}
+/* Services : quadrillage très léger sur les côtés, fondu vers le centre */
+#services{position:relative;isolation:isolate}
+#services::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px;
+ -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;
+ mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}

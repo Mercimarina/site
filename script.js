@@ -38,22 +38,49 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
  });
 })();
 
-/* Carrousel en biais : défilement lissé au scroll */
-(()=>{
- const IM=[["carrousel-01.webp","carrousel-02.webp","carrousel-03.webp","carrousel-04.webp","carrousel-05.webp"],["carrousel-06.webp","carrousel-07.webp","carrousel-08.webp","carrousel-09.webp"],["carrousel-10.webp","carrousel-11.webp","carrousel-12.webp","carrousel-13.webp","carrousel-14.webp"],["carrousel-15.webp","carrousel-16.webp","carrousel-17.webp","carrousel-18.webp","carrousel-19.webp"]];
- const reel=$('#reel'),box=reel.parentNode;
- IM.forEach((imgs,r)=>{
-  const row=document.createElement('div');row.className='row';row.dataset.d=r%2?1:-1;
-  for(let i=0;i<28;i++){const t=document.createElement('div');t.className='tile';const im=new Image();im.alt='';im.decoding='async';im.src=imgs[i%imgs.length];t.appendChild(im);row.appendChild(t)}
-  reel.appendChild(row);
- });
- const rows=[...reel.children];let cur=0,tgt=0,raf=0,base=0;
- const measure=()=>{base=(rows[0].scrollWidth-reel.offsetWidth)/2};
- const calc=()=>{tgt=innerHeight-box.getBoundingClientRect().top};
- function loop(){cur+=(tgt-cur)*.08;rows.forEach(r=>{const d=+r.dataset.d;r.style.transform='translate3d('+((d<0?0:-base)+d*cur*.35)+'px,0,0)'});raf=Math.abs(tgt-cur)>.2?requestAnimationFrame(loop):0}
- measure();calc();cur=tgt;loop();
- addEventListener('resize',()=>{measure();calc();loop()});
- if(!reduced)addEventListener('scroll',()=>{calc();if(!raf)raf=requestAnimationFrame(loop)},{passive:true});
+/* Carrousel « style graphique » : 2 rangées de slides en défilement continu, élan au scroll, ralenti au survol */
+(() => {
+  const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck'};
+  const ROWS = [
+    ['myc-03','she-07','fyd-05','myc-13','she-04','fyd-09','myc-06','she-15'],
+    ['she-13','fyd-01','myc-01','she-03','fyd-13','myc-02','she-08','fyd-11']
+  ];
+  const SPEED = [22, 22], DIR = [-1, 1];
+  const plane = document.getElementById('sg-plane'), stage = document.getElementById('sg-stage');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rows = ROWS.map(ids => {
+    const row = document.createElement('div'); row.className = 'sg-row';
+    ids.concat(ids, ids).forEach(id => {
+      const p = id.slice(0,3), t = document.createElement('div'); t.className = 'sg-tile';
+      const im = new Image(); im.src = id + '.webp'; im.alt = ''; im.decoding = 'async';
+      const lab = document.createElement('span'); lab.className = 'sg-lab'; lab.textContent = P[p];
+      t.append(im, lab); row.append(t);
+    });
+    plane.append(row);
+    return {el: row, n: ids.length, x: 0, w: 0, hover: 0};
+  });
+  const measure = () => rows.forEach((r, i) => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; r.x = -r.w * (0.5 + 0.25 * i); });
+  rows.forEach(r => { r.el.addEventListener('pointerenter', () => r.hover = 1); r.el.addEventListener('pointerleave', () => r.hover = 0); });
+  let boost = 0, lastY = scrollY, visible = true, last = performance.now();
+  addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.8; lastY = scrollY; }, {passive:true});
+  new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(stage);
+  function frame(now) {
+    const dt = Math.min(64, now - last) / 1000; last = now;
+    if (visible) {
+      boost *= Math.pow(0.04, dt);
+      rows.forEach((r, i) => {
+        if (!reduced) {
+          r.x += DIR[i] * (SPEED[i] * (r.hover ? 0.12 : 1) * dt + boost * dt * 3 * (1 + i * .15));
+          if (r.x <= -2 * r.w) r.x += r.w;
+          if (r.x > -r.w * 0.05) r.x -= r.w;
+        }
+        r.el.style.transform = `translate3d(${r.x}px,0,0)`;
+      });
+    }
+    requestAnimationFrame(frame);
+  }
+  addEventListener('load', measure); addEventListener('resize', measure);
+  measure(); requestAnimationFrame(frame);
 })();
 
 /* Réalisations : bouton flèche en bas à droite au survol (PC) + un seul clic/tap pour ouvrir la page */
