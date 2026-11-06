@@ -29,23 +29,24 @@
 .about .sub{text-transform:none;letter-spacing:0;font-size:17px;font-weight:600}
 /* Typo : numéro du formulaire sans italique */
 .qn em{font:700 1em/1 var(--f);font-style:normal}
-/* Carrousel « style graphique » v3 : grand panneau, 4 rangées inclinées à plat */
-section.sg{padding:0}
-.sg-head{padding-top:48px;padding-bottom:44px;text-align:center}
-.sg-note{margin:18px auto 0;max-width:60ch;font-size:15px;color:var(--muted);text-wrap:balance}
-.sg-stage{position:relative;height:clamp(440px,56vw,760px);overflow:hidden;isolation:isolate;width:100%;margin:0;
- background:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,radial-gradient(110% 80% at 50% 10%,#f5f9ff 0%,#d9eafe 50%,#bcd8fb 100%);
-}
-.sg-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 0 80px 10px rgba(30,70,140,.16) inset}
-.sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:30px;transform:translate(-50%,-50%) rotate(-8deg)}
-.sg-row{display:flex;gap:30px;will-change:transform}
-.sg-tile{position:relative;flex:0 0 auto;width:400px;aspect-ratio:16/9;max-width:none;border-radius:16px;overflow:hidden;background:#eaf3fe;
- box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.06),0 30px 46px -24px rgba(6,18,46,.5),0 10px 16px -10px rgba(6,18,46,.2);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+/* Carrousel « style graphique » : même mise en forme que le bandeau « Une cohérence visuelle » des pages réalisations, sur fond bleu */
+/* Réalisations + carrousel : un seul bandeau bleu quadrillé */
+.band{background:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(180deg,#eef6ff 0%,#dcecfe 45%,#c3dcfb 100%)}
+#realisations{padding-bottom:24px}
+section.sg{position:relative;padding:56px 0 80px}
+.sg-head{padding:0 24px 44px;text-align:center}
+.sg-note{margin:16px auto 0;max-width:60ch;font-size:15px;color:var(--muted);text-wrap:balance}
+.sg-stage{position:relative;overflow:hidden;height:560px;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:24px;transform:translate(-50%,-50%)}
+.sg-row{display:flex;gap:24px;will-change:transform}
+.sg-tile{position:relative;flex:0 0 auto;width:440px;aspect-ratio:16/9;max-width:none;border:5px solid rgba(255,255,255,.6);border-radius:20px;overflow:hidden;background:#eaf3fe;
+ box-shadow:0 12px 30px rgba(20,40,110,.16);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .sg-tile img{display:block;width:100%;height:100%;object-fit:cover}
-.sg-lab{position:absolute;left:12px;bottom:12px;padding:7px 12px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
-.sg-tile:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.08),0 50px 70px -30px rgba(6,18,46,.6),0 12px 20px -10px rgba(6,18,46,.22)}
+.sg-lab{position:absolute;left:10px;bottom:10px;padding:7px 12px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.sg-tile:hover{transform:translateY(-6px)}
 .sg-tile:hover .sg-lab{opacity:1;transform:none}
-@media (max-width:700px){.sg-head{padding-top:40px;padding-bottom:28px}.sg-stage{height:clamp(420px,120vw,560px)}.sg-tile{width:250px;border-radius:12px}.sg-row,.sg-plane{gap:18px}}
+@media (max-width:700px){#realisations{padding-bottom:16px}section.sg{padding:40px 0 64px}.sg-head{padding-bottom:32px}.sg-stage{height:310px}.sg-tile{width:250px;border-width:4px;border-radius:14px}.sg-row,.sg-plane{gap:16px}}
 @media (prefers-reduced-motion:reduce){.sg-tile,.sg-lab{transition:none}}
 /* Services : quadrillage très léger sur les côtés, fondu vers le centre */
 #services{position:relative;isolation:isolate}
@@ -107,14 +108,14 @@ section.sg{padding:0}
  <div class="wnav"><button class="arrow prev" aria-label="Réalisations précédentes"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></button><button class="arrow next" aria-label="Réalisations suivantes"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arr"/></svg></button></div>
 </section>
 
-</div>
-
-<!-- 4 · Carrousel « style graphique » (v2 : plateau en perspective) -->
+<!-- 4 · Carrousel « style graphique » : dans le même bandeau que les réalisations -->
 <section class="sg" aria-labelledby="sg-t">
  <div class="wrap sg-head"><p class="kicker">Style graphique</p><h2 class="title" id="sg-t">À chaque projet<br>son style graphique</h2><p class="sg-note">Pour des raisons de confidentialité, certaines slides contiennent du faux texte.</p></div>
  <div class="sg-stage" id="sg-stage" role="img" aria-label="Mosaïque animée de slides réalisées pour MyconnectingIA, Sherpa et Fydem"><div class="sg-plane" id="sg-plane"></div></div>
  <div hidden><div id="reel"></div></div><!-- conservé vide pour script.js -->
 </section>
+
+</div>
 
 <!-- 6 · Méthode -->
 <section class="method" id="methode"><div class="wrap">
@@ -193,12 +194,10 @@ section.sg{padding:0}
 (() => {
   const P = {myc:'MyconnectingIA · Présentation commerciale', she:'Sherpa · Support de formation', fyd:'Fydem · Pitch deck'};
   const ROWS = [
-    ['she-13','fyd-05','myc-03','she-07','fyd-13','myc-14'],
-    ['myc-01','she-04','fyd-01','myc-13','she-03','fyd-09'],
-    ['fyd-03','myc-02','she-15','fyd-11','myc-06','she-05'],
-    ['she-08','myc-10','fyd-06','she-17','myc-04','fyd-16']
+    ['myc-03','she-07','fyd-05','myc-13','she-04','fyd-09','myc-06','she-15'],
+    ['she-13','fyd-01','myc-01','she-03','fyd-13','myc-02','she-08','fyd-11']
   ];
-  const SPEED = [16, 24, 20, 28], DIR = [1, -1, 1, -1];
+  const SPEED = [22, 22], DIR = [-1, 1];
   const plane = document.getElementById('sg-plane'), stage = document.getElementById('sg-stage');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const rows = ROWS.map(ids => {
@@ -212,7 +211,7 @@ section.sg{padding:0}
     plane.append(row);
     return {el: row, n: ids.length, x: 0, w: 0, hover: 0};
   });
-  const measure = () => rows.forEach((r, i) => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; r.x = -r.w * (0.25 + 0.17 * i); });
+  const measure = () => rows.forEach((r, i) => { r.w = r.el.children[r.n].offsetLeft - r.el.children[0].offsetLeft; r.x = -r.w * (0.5 + 0.25 * i); });
   rows.forEach(r => { r.el.addEventListener('pointerenter', () => r.hover = 1); r.el.addEventListener('pointerleave', () => r.hover = 0); });
   let boost = 0, lastY = scrollY, visible = true, last = performance.now();
   addEventListener('scroll', () => { boost += (scrollY - lastY) * 0.8; lastY = scrollY; }, {passive:true});
