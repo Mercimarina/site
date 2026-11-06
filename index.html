@@ -224,7 +224,7 @@
     set.forEach((id, i) => {
       const p = id.slice(0,3), t = document.createElement('div');
       t.className = 'sg-tile'; t.dataset.p = p;
-      const im = new Image(); im.src = 'carrousel-v2/' + id + '.webp'; im.alt = i < ids.length ? P[p].split(' · ')[0] + ', exemple de slide' : '';
+      const im = new Image(); im.src = id + '.webp'; im.alt = i < ids.length ? P[p].split(' · ')[0] + ', exemple de slide' : '';
       im.decoding = 'async'; im.loading = r === 1 || i < 6 ? 'eager' : 'lazy';
       const lab = document.createElement('span'); lab.className = 'sg-lab'; lab.textContent = P[p]; lab.setAttribute('aria-hidden','true');
       t.append(im, lab); row.append(t);
