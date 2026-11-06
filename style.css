@@ -444,13 +444,10 @@ section.sg{position:relative;padding:56px 0 80px}
 /* Méthode : même espace entre le titre et le texte sur toutes les cartes (l’illustration ne repousse plus le texte) */
 .step .ttl .ill{margin-bottom:-300px}
 .step p{margin-top:32px}
-/* Mobile : bouton MerciMarina complet (fond blanc) et bande blanche sous l’en-tête dès que l’on fait défiler */
+/* Mobile : pas de bouton MerciMarina ni de bande blanche ; le menu passe à gauche et s’ouvre à gauche */
 @media(max-width:600px){
- .brand{display:flex;height:46px;padding:3px 18px 3px 6px;gap:10px;font-size:16px;background:var(--bg)!important;border-color:var(--bg)!important;color:var(--ink)}
- .brand img{height:42px}
- header.site::before{content:"";position:absolute;left:0;right:0;top:calc(-1 * (env(safe-area-inset-top,0px) + 10px));height:calc(env(safe-area-inset-top,0px) + 80px);background:var(--bg);box-shadow:0 1px 0 var(--line),0 8px 24px rgba(20,70,160,.08);opacity:0;transition:opacity .3s;pointer-events:none}
- header.site.band::before{opacity:1;pointer-events:auto}
- header.site.band .brand{box-shadow:none}
+ .hright{margin-left:0;margin-right:auto}
+ nav{left:0;right:auto}
 }
 /* Mobile : flèches des carrousels à 44 px, taille conseillée pour le doigt */
 @media(max-width:600px){.arrow,.tb{width:44px;height:44px}}

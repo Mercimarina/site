@@ -12,7 +12,7 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
  let y0=0;burger.addEventListener('click',()=>{y0=scrollY});
  addEventListener('scroll',()=>{if(nav.classList.contains('open')&&Math.abs(scrollY-y0)>30)close()},{passive:true});
  const head=$('header.site'),hero=$('.hero');
- const upd=()=>{head.classList.toggle('solid',scrollY>hero.offsetHeight-70);head.classList.toggle('band',scrollY>20)};
+ const upd=()=>head.classList.toggle('solid',scrollY>hero.offsetHeight-70);
  addEventListener('scroll',upd,{passive:true});
  const sv=$('#services'),sc=()=>head.classList.toggle('past',scrollY>=sv.offsetTop-90);addEventListener('scroll',sc,{passive:true});addEventListener('resize',sc);sc();addEventListener('resize',upd);upd();
  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
