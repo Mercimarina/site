@@ -164,13 +164,12 @@
 /* Avant/après : sur grand écran, les paires sont alignées en colonne ; en dessous de 1000 px, on les garde côte à côte dans l'ordre de lecture */
 @media(max-width:1000px){.rz-batile{order:var(--o,0)}}
 
-/* En-tête : flèche retour à gauche du logo */
-.hleft{display:flex;align-items:center;gap:10px;pointer-events:auto}
-.hback{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--ink);transition:background .25s,transform .25s}
-.hback svg{width:18px;height:18px;transform:rotate(180deg);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.hback:hover{background:var(--bg);transform:translateX(-2px)}
+/* En-tête : flèche « Retour » vers les réalisations de l’accueil (remplace le logo MerciMarina) */
+.hback{display:inline-flex;align-items:center;gap:10px;pointer-events:auto;color:var(--ink);font:600 15px var(--f);text-decoration:none}
+.hback-ic{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .25s,transform .25s}
+.hback-ic svg{width:18px;height:18px;transform:rotate(180deg);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hback:hover .hback-ic{background:var(--bg);transform:translateX(-2px)}
 /* En-tête : bande blanche dès que l’on fait défiler la page */
 header.site::before{content:"";position:absolute;left:0;right:0;top:calc(-1 * (env(safe-area-inset-top,0px) + 10px));height:calc(env(safe-area-inset-top,0px) + 80px);background:var(--bg);box-shadow:0 1px 0 var(--line),0 8px 24px rgba(20,70,160,.08);opacity:0;transition:opacity .3s;pointer-events:none}
 header.site.band::before{opacity:1;pointer-events:auto}
-header.site.band .brand{box-shadow:none}
 

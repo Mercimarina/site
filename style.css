@@ -441,3 +441,6 @@ section.sg{position:relative;padding:56px 0 80px}
  background:linear-gradient(rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px;
  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;
  mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}
+/* Méthode : même espace entre le titre et le texte sur toutes les cartes (l’illustration ne repousse plus le texte) */
+.step .ttl .ill{margin-bottom:-300px}
+.step p{margin-top:32px}
