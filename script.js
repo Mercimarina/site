@@ -56,12 +56,12 @@ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
  if(!reduced)addEventListener('scroll',()=>{calc();if(!raf)raf=requestAnimationFrame(loop)},{passive:true});
 })();
 
-/* Réalisations : bouton « Voir » au survol (PC) + un seul clic/tap pour ouvrir la page */
+/* Réalisations : bouton flèche en bas à droite au survol (PC) + un seul clic/tap pour ouvrir la page */
 (()=>{
  const wk=$('.wks');
  $$('.wk',wk).forEach(c=>{
   const fl=$('.fl',c);if(!fl)return;
-  fl.insertAdjacentHTML('beforeend','<span class="voir" aria-hidden="true">Voir<i class="ic"><svg viewBox="0 0 24 24"><use href="#arr"/></svg></i></span>');
+  fl.insertAdjacentHTML('beforeend','<span class="voir" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#arr"/></svg></span>');
  });
  wk.addEventListener('click',e=>{
   const c=e.target.closest('.wk');if(!c)return;
