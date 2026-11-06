@@ -16,9 +16,9 @@
 <title>Graphiste PowerPoint freelance à Paris | MerciMarina</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Méthode : titre sur deux lignes (2e ligne en graisse normale), illustration à côté du titre */
+/* Méthode : titre sur deux lignes, entièrement en gras, illustration à côté du titre */
 .step h3{font-size:clamp(22px,6vw,28px);white-space:nowrap}
-.step h3 .lt{display:block;font-weight:400;opacity:.85}
+.step h3 .lt{display:block}
 @media (min-width:1400px){.step h3{font-size:clamp(20px,calc(2.5vw - 14px),28px)}}
 /* Typo : services en minuscules et semi-gras */
 .item > button{text-transform:none;letter-spacing:0}
@@ -30,11 +30,12 @@
 /* Typo : numéro du formulaire sans italique */
 .qn em{font:700 1em/1 var(--f);font-style:normal}
 /* Carrousel « style graphique » v3 : grand panneau, 4 rangées inclinées à plat */
-.sg-head{padding-top:100px;padding-bottom:44px;text-align:center}
+section.sg{padding:0}
+.sg-head{padding-top:48px;padding-bottom:44px;text-align:center}
 .sg-note{margin:18px auto 0;max-width:60ch;font-size:15px;color:var(--muted);text-wrap:balance}
-.sg-stage{position:relative;height:clamp(440px,56vw,760px);overflow:hidden;isolation:isolate;width:min(1520px,calc(100% - 32px));margin:0 auto 110px;
+.sg-stage{position:relative;height:clamp(440px,56vw,760px);overflow:hidden;isolation:isolate;width:100%;margin:0;
  background:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px) 0 0/52px 52px,radial-gradient(110% 80% at 50% 10%,#f5f9ff 0%,#d9eafe 50%,#bcd8fb 100%);
- box-shadow:0 0 0 1px rgba(6,18,46,.06) inset,0 40px 80px -50px rgba(6,18,46,.45)}
+}
 .sg-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 0 80px 10px rgba(30,70,140,.16) inset}
 .sg-plane{position:absolute;left:50%;top:50%;width:max-content;display:grid;gap:30px;transform:translate(-50%,-50%) rotate(-8deg)}
 .sg-row{display:flex;gap:30px;will-change:transform}
@@ -44,8 +45,14 @@
 .sg-lab{position:absolute;left:12px;bottom:12px;padding:7px 12px;border-radius:999px;background:rgba(6,18,46,.62);color:#fff;font:600 12px/1 var(--f);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
 .sg-tile:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 0 0 1px rgba(6,18,46,.08),0 50px 70px -30px rgba(6,18,46,.6),0 12px 20px -10px rgba(6,18,46,.22)}
 .sg-tile:hover .sg-lab{opacity:1;transform:none}
-@media (max-width:700px){.sg-head{padding-top:72px;padding-bottom:28px}.sg-stage{height:clamp(420px,120vw,560px);margin-bottom:72px}.sg-tile{width:250px;border-radius:12px}.sg-row,.sg-plane{gap:18px}}
+@media (max-width:700px){.sg-head{padding-top:40px;padding-bottom:28px}.sg-stage{height:clamp(420px,120vw,560px)}.sg-tile{width:250px;border-radius:12px}.sg-row,.sg-plane{gap:18px}}
 @media (prefers-reduced-motion:reduce){.sg-tile,.sg-lab{transition:none}}
+/* Services : quadrillage très léger sur les côtés, fondu vers le centre */
+#services{position:relative;isolation:isolate}
+#services::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(111,177,247,.16) 1px,transparent 1px) 0 0/64px 64px;
+ -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;
+ mask-image:linear-gradient(90deg,#000 0%,transparent 30%,transparent 70%,#000 100%),linear-gradient(transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MerciMarina","url":"https://mercimarina.fr/","image":"https://mercimarina.fr/og-image.jpg","email":"hello@mercimarina.fr","description":"Graphiste PowerPoint freelance : présentations commerciales, pitch decks, supports de formation, conférences et appels d’offres sur mesure.","founder":{"@type":"Person","name":"Marina","jobTitle":"Graphiste PowerPoint freelance"},"address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"areaServed":["Paris","France"],"serviceType":["Présentation commerciale","Pitch deck","Support de formation","Conférence et événement","Appel d’offres"],"sameAs":["https://www.malt.fr/profile/marinavu"]}</script>
 </head>
@@ -89,7 +96,7 @@
 <div class="band">
 <!-- 5 · Réalisations -->
 <section id="realisations">
- <div class="wrap"><p class="kicker">Réalisations</p><h2 class="title">Découvrez mes<br>dernières réalisations</h2></div>
+ <div class="wrap"><p class="kicker">Découvrez</p><h2 class="title">Mes dernières réalisations</h2></div>
  <div class="wks"> 
   <a class="wk k-myc" href="realisation-myconnectingia.html"><span class="fl"><span class="fi"><img class="f" alt="MyconnectingIA" src="myconnectingia-presentation.webp" loading="lazy" decoding="async"><img class="b" alt="" src="myconnectingia-exemple-presentation.webp" loading="lazy" decoding="async"><span class="glass"><h3>MyconnectingIA</h3><span class="tag">Présentation commerciale</span></span></span></span></a>
   <a class="wk k-fyd" href="realisation-fydem.html"><span class="fl"><span class="fi"><img class="f" alt="Fydem" src="fydem-presentation.webp" loading="lazy" decoding="async"><img class="b" alt="" src="fydem-exemple-presentation.webp" loading="lazy" decoding="async"><span class="glass"><h3>Fydem</h3><span class="tag">Pitch deck</span></span></span></span></a>
