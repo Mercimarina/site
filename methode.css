@@ -1,0 +1,4 @@
+/* Méthode : illustrations harmonisées (même taille, posées à droite du titre) */
+#methode .step .ttl{position:relative}
+#methode .step .ill{position:absolute;right:-4px;bottom:calc(100% - 40px);display:block;width:43%;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:center bottom;margin:0;transform:none}
+@media (max-width:700px){#methode .step .ill{width:40%;right:-2px}}
