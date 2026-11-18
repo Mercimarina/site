@@ -313,7 +313,7 @@ footer a{text-decoration:none}
 .flogo{display:inline-flex;align-items:center;gap:14px;color:#fff;font:700 24px var(--f);letter-spacing:.03em}
 .flogo img{display:block;width:auto;height:64px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
 .ft p{max-width:34ch;margin-top:14px;color:#a9b4c8}
-.ft h4{margin:0 0 14px;font:700 15px var(--f)}
+.ft h3{margin:0 0 14px;font:700 15px var(--f)}
 .ft ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;color:#a9b4c8}
 .ft li a.mail{font-weight:700;opacity:1}
 .ft li a{color:#fff;opacity:.8}.ft li a:hover{opacity:1}
