@@ -1,9 +1,0 @@
-/* Méthode : illustrations harmonisées, à côté du titre */
-#methode .step .ttl{position:relative;align-items:flex-end;gap:14px}
-#methode .step .ill{position:absolute;right:-2px;bottom:calc(100% - 40px);display:block;width:38%;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:center bottom;margin:0;transform:none}
-/* Cartes assez larges : illustration à droite du titre, bas aligné sur la 2e ligne */
-@media (min-width:840px) and (max-width:1380px),(min-width:1800px){
- #methode .step .ill{position:static;flex:none;width:26%;max-width:130px;aspect-ratio:4/3;object-position:center bottom;margin:0 0 6px;transform:none;align-self:flex-end}
-}
-/* Titres : Inter bold uniquement */
-#methode .step h3 i{font:800 34px/1.05 var(--f);font-style:normal;letter-spacing:-.03em}
