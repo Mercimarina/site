@@ -457,3 +457,6 @@ section.sg{position:relative;padding:56px 0 80px}
 .sg-stage{cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .sg-stage.is-drag{cursor:grabbing}
 .sg-tile img{pointer-events:none;-webkit-user-drag:none}
+/* Méthode : textes courts, les cartes s’ajustent à leur contenu */
+@media(min-width:1400px){.steps .step{min-height:0;padding-bottom:36px}}
+@media(max-width:1399px){.steps .step{min-height:330px}}
